@@ -97,4 +97,11 @@ Street View House Numbers(SVHN) dataset was divided into validation set of 10,00
 
 Let us end then with the conclusion here, It introduced a breakthrough in generating high-quality and high-resolution images using neural networks. It tells that how the convolutional netwroks can be effectively used in the architecture of GANs where we replaced fully connceted networks with convoutional networks in the generator and discriminator which gives more stable training and produced high quality images. It has the ability to capture the more complex patterns in the data leading to more realistic and detailed images. The success of DCGANs has laid the foundation for numerous advancements in GAN research, which includes the architectures like StyleGAN, CycleGAN etc. It had proved that convolutional architectures could be helpful in generative models and motivated the exploration of various modifications and improvements in GAN training and architecture design.
 
+## Resources for further reading :
+[Unsupervised Representation Learning
+With Deep Convolutional
+Generative Adverserial Networks](https://arxiv.org/pdf/1511.06434)
 
+[Application of an Improved DCGAN for Image Generation](https://www.researchgate.net/publication362092988_Application_of_an_Improved_DCGAN_for_Image_Generation)
+
+[Batch Norm](https://towardsdatascience.com/batch-norm-explained-visually-how-it-works-and-why-neural-networks-need-it-b18919692739)
