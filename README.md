@@ -53,59 +53,27 @@ Adam Optimizer beta parameter 0.5 where it was tuned through grid search CV
 The suggested momentum parameter value was 0.9, but it was later set to 0.5 due to unstable and oscillating training
 
 > Note: The Adam(Adaptive Moment Estimation) optimizer is an iterative optimization algorithm, which take momentum into consideration, is used to minimize the loss function during the training of neural networks. Given below, g is the mean of each gradient. β1 is the decay rate of the mean and β2 is decay rate for the squared gradients.Here are the key equations used in the Adam optimizer:
-     <pre>
-   m<sub>t</sub> = β<sub>1</sub> * m<sub>t-1</sub> + (1 - β<sub>1</sub>) * g<sub>t</sub>
-   v<sub>t</sub> = β<sub>2</sub> * v<sub>t-1</sub> + (1 - β<sub>2</sub>) * g<sub>t</sub><sup>2</sup>
-   </pre>
-    <pre>
-   m̂<sub>t</sub> = m<sub>t</sub> / (1 - β<sub>1</sub><sup>t</sup>)
-   v̂<sub>t</sub> = v<sub>t</sub> / (1 - β<sub>2</sub><sup>t</sup>)
-   </pre>
-Where:
-- <code>θ<sub>t</sub></code>: Parameters at time step <code>t</code>
-- <code>α</code>: Learning rate
-- <code>β<sub>1</sub></code>: Exponential decay rate for the first moment estimate
-- <code>β<sub>2</sub></code>: Exponential decay rate for the second moment estimate
-- <code>ε</code>: Small constant to prevent division by zero
 
 ### DCGAN Equations and Formulas
 
 
 1. **Generator**: The objective function for the generator is:
-   <pre>
-   L<sub>G</sub> = -E<sub>x~p<sub>data</sub></sub>[log(D(G(z)))]
-   </pre>
+   L_G = -E[log(D(G(z)))]
    Where:
-   - <code>G(z)</code>: New data generated from noise vector <code>z</code>
-   - <code>D(G(z))</code>: Discriminator's classifiyng the data
-   - <code>E<sub>x~p<sub>data</sub></sub>[ ]</code>: Expectedvalue over the data distribution
+   - G(z): Output of the generator given input noise z
+   - D(G(z)): Probability that the discriminator classifies the generated data as real
+   - E: Expectation over the input noise distribution
 
 2. **Discriminator Objective**:The objective function for the discriminator is:
-   <pre>
-   L<sub>D</sub> = -E<sub>x~p<sub>data</sub></sub>[log(D(x))] - E<sub>z~p<sub>z</sub></sub>[log(1 - D(G(z)))]
-   </pre>
-   Where:
-   - <code>D(x)</code>: Discriminator classifiyng the data
-   - <code>D(G(z))</code>: Discriminator's prediction of generated data being real
+   L_D = E[log(D(x))] + E[log(1 - D(G(z)))]
 
-3. **Training Process**:
-   - **Discriminator Update**:
-     <pre>
-     θ<sub>D</sub> ← θ<sub>D</sub> - α<sub>D</sub> ∇<sub>θ<sub>D</sub></sub> L<sub>D</sub>
-     </pre>
-   - **Generator Update**:
-     <pre>
-     θ<sub>G</sub> ← θ<sub>G</sub> - α<sub>G</sub> ∇<sub>θ<sub>G</sub></sub> L<sub>G</sub>
-     </pre>
    Where:
-   - <code>θ<sub>D</sub></code>,<code>θ<sub>G</sub></code>: Parameters
-   - <code>α<sub>D</sub></code>, <code>α<sub>G</sub></code>: Learning rates for discriminator and generator
-   - <code>∇<sub>θ<sub>D</sub></sub></code>, <code>∇<sub>θ<sub>G</sub></sub></code>: Loss function's gradient with respect to the parameters
+   - D(x): Probability that x is real
+   - D(G(z)): Probability that the generated data is classified as real
 
-4. **Minimax Approach**:
-   <pre>
-   min<sub>G</sub> max<sub>D</sub> L<sub>D</sub>
-   </pre>
+3. **Minimax Approach**:   
+   min_G max_D V(D, G) = E[log(D(x))] + E[log(1 - D(G(z)))]
+
    Here the generator tries to minimize the probability of the generator classifying the data correctly. It implies that the discriminator tries to minimize its classification error rate.
 
 ![i1](https://drive.google.com/uc?id=12OquuqsZW7AM8SddlJvPoQa3JUk2U3wd)
